@@ -28,15 +28,6 @@ namespace CleanArchitecture.Web
 
 			services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }));
 
-            // add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
-            services.Configure<ServiceConfig>(config =>
-            {
-                config.Services = new List<ServiceDescriptor>(services);
-
-                // optional - default path to view services is /listallservices - recommended to choose your own path
-                config.Path = "/listservices";
-            });
-
             return ContainerSetup.InitializeWeb(Assembly.GetExecutingAssembly(), services);
         }
 
