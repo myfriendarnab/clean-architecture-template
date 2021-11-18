@@ -20,16 +20,11 @@ namespace CleanArchitecture.Web
 
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
-			services.Configure<CookiePolicyOptions>(options =>
-			{
-				options.CheckConsentNeeded = context => true;
-				options.MinimumSameSitePolicy = SameSiteMode.None;
-			});
-
 			services.AddDbContext();
 
-			services.AddControllersWithViews().AddNewtonsoftJson();
-			services.AddRazorPages();
+			services
+                .AddControllers()
+                .AddNewtonsoftJson();
 
 			services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }));
 
@@ -60,8 +55,6 @@ namespace CleanArchitecture.Web
 			app.UseRouting();
 
 			app.UseHttpsRedirection();
-			app.UseStaticFiles();
-			app.UseCookiePolicy();
 
 			// Enable middleware to serve generated Swagger as a JSON endpoint.
 			app.UseSwagger();
@@ -72,7 +65,6 @@ namespace CleanArchitecture.Web
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapDefaultControllerRoute();
-				endpoints.MapRazorPages();
 			});
 		}
 	}
