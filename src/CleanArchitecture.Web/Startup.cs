@@ -14,7 +14,7 @@ namespace CleanArchitecture.Web
 {
 	public class Startup
 	{
-		public Startup(IConfiguration config) => this.Configuration = config;
+		public Startup(IConfiguration config) => Configuration = config;
 
 		public IConfiguration Configuration { get; }
 
